@@ -1,10 +1,11 @@
 import { useState } from "react";
 
-function FilterableProductTable({ genres }) {
+function MoviesApp({ initialValue, genres }) {
   const [filterText, setFilterText] = useState("");
-  const [counter, setCounter] = useState(1);
+  const [counter, setCounter] = useState( initialValue );
   const incrementCounter = () => setCounter(counter + 1);
   let decrementCounter = () => setCounter(counter - 1);
+  
 
   const [selectedGenre, setSelectedGenre] = useState("ALL");
 
@@ -33,21 +34,18 @@ function FilterableProductTable({ genres }) {
 }
 
 function GenreSelect({initialGenre, genres, onGenreSelect}) {
-  const rows = [];
-  console.log(initialGenre);
-
   return genres.map((genre) => {
     if (genre !== initialGenre) {
       return (
-        <label onClick={(e) => onGenreSelect(genre)}> {genre} </label>
+        <label key={genre} onClick={(e) => onGenreSelect(genre)}> {genre} </label>
       );
     } else {
-      return <label style={{ color: "red" }}> {genre} </label>;
+      return <label key={genre} style={{ color: "red" }}> {genre} </label>;
     }
   });
 }
 
-function SearchBar({ filterText, onFilterTextChange }) {
+export function SearchBar({ filterText, onFilterTextChange }) {
   return (
     <form>
       <input
@@ -67,34 +65,28 @@ function Counter({
   decrementCounter,
   onInput
 }) {
-  // value += onIncrease ? +1 : -1;
 
-  if (incrementCounter) {
-    console.log("click +");
-  }
-  if (decrementCounter) {
-    console.log("click -");
-  }
 
   return (
-    <div>
-      <button onClick={incrementCounter}>+</button>{" "}
-      <input
+    <div >
+      <button id="increment-btn" onClick={incrementCounter}>+</button>{" "}
+      <input 
+        id="counter-input"
         onChange={(e) => onInput(Number(e.target.value))}
         value={initialValue}
         type="number"
       ></input>
-      <button onClick={decrementCounter}> - </button>
+      <button id="decrement-btn" onClick={decrementCounter}> - </button>
     </div>
   );
 }
 
-const INITIAL_VALUE = 0;
+export const INITIAL_VALUE = 5;
 const GENRES_ARRAY = ["ALL", "DOCUMENTARY", "COMEDY", "HORROR", "CRIME"];
 
 export default function App() {
   return (
-    <FilterableProductTable
+    <MoviesApp
       initialValue={INITIAL_VALUE}
       genres={GENRES_ARRAY}
     />
