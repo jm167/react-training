@@ -1,92 +1,50 @@
 import { useState } from "react";
+import  Counter from './components/Counter'
+import  GenreSelect from './components/GenreSelector'
+import  SearchBar from './components/SearchBar'
 
-function MoviesApp({ initialValue, genres }) {
-  const [filterText, setFilterText] = useState("");
-  const [counter, setCounter] = useState( initialValue );
-  const incrementCounter = () => setCounter(counter + 1);
-  let decrementCounter = () => setCounter(counter - 1);
-  
 
-  const [selectedGenre, setSelectedGenre] = useState("ALL");
 
-  if (counter <= 0) {
-    setCounter(1);
-  }
-
+function AppMovies({ initialValue, genres }) {
   return (
     <div>
-      <GenreSelect
-        initialGenre={selectedGenre}
-        genres={genres}
-        onGenreSelect={setSelectedGenre}
-      />
-
-      <SearchBar filterText={filterText} onFilterTextChange={setFilterText} />
-
+      
       <Counter
-        initialValue={counter}
-        incrementCounter={incrementCounter}
-        decrementCounter={decrementCounter}
-        onInput={setCounter}
+        initialValue={initialValue}
       />
+
+      <GenreSelect
+      selectedGenre = 'ALL'
+        genres={genres}
+        onChange={onGenreChange}
+      />
+
+      <SearchBar initialValue={''} onFilterTextChange={onFilterTextChange} onSubmit={onSubmit}/>
+
     </div>
   );
 }
 
-function GenreSelect({initialGenre, genres, onGenreSelect}) {
-  return genres.map((genre) => {
-    if (genre !== initialGenre) {
-      return (
-        <label key={genre} onClick={(e) => onGenreSelect(genre)}> {genre} </label>
-      );
-    } else {
-      return <label key={genre} style={{ color: "red" }}> {genre} </label>;
-    }
-  });
+function onFilterTextChange(e) {
+console.log(e)
 }
 
-export function SearchBar({ filterText, onFilterTextChange }) {
-  return (
-    <form>
-      <input
-        type="text"
-        value={filterText}
-        placeholder="Search..."
-        onChange={(e) => onFilterTextChange(e.target.value)}
-      />
-      <label>{filterText}</label>
-    </form>
-  );
+function onSubmit(e) {
+  console.log(e);
 }
 
-function Counter({
-  initialValue,
-  incrementCounter,
-  decrementCounter,
-  onInput
-}) {
-
-
-  return (
-    <div >
-      <button id="increment-btn" onClick={incrementCounter}>+</button>{" "}
-      <input 
-        id="counter-input"
-        onChange={(e) => onInput(Number(e.target.value))}
-        value={initialValue}
-        type="number"
-      ></input>
-      <button id="decrement-btn" onClick={decrementCounter}> - </button>
-    </div>
-  );
+function onGenreChange(e) {
+  console.log(e)
 }
 
-export const INITIAL_VALUE = 5;
+
+
+const INITIAL_VALUE = 1;
 const GENRES_ARRAY = ["ALL", "DOCUMENTARY", "COMEDY", "HORROR", "CRIME"];
 
 export default function App() {
   return (
-    <MoviesApp
+    <AppMovies
       initialValue={INITIAL_VALUE}
       genres={GENRES_ARRAY}
     />
