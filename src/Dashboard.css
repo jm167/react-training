@@ -1,0 +1,338 @@
+/* ─── Reset & base ─────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* ─── Dashboard container ──────────────────────────────────────── */
+.dashboard {
+  background: #fff;
+  min-height: 100vh;
+  color: #333;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 13px;
+}
+
+/* ─── Page header ──────────────────────────────────────────────── */
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  border-bottom: 1px solid #e4e4e4;
+}
+
+.page-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0;
+  color: #2c3e50;
+}
+
+.back-link {
+  font-size: 13px;
+  color: #2980b9;
+  text-decoration: none;
+}
+.back-link:hover {
+  text-decoration: underline;
+}
+
+/* ─── Sticky top bar ───────────────────────────────────────────── */
+.sticky-bar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: #fff;
+  border-bottom: 1px solid #e4e4e4;
+  display: flex;
+  align-items: stretch;
+}
+
+.sticky-left {
+  width: 260px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-right: 1px solid #e4e4e4;
+}
+
+.sticky-right {
+  flex: 1;
+  overflow: hidden;
+}
+
+/* ─── View-length selector ─────────────────────────────────────── */
+.view-length-label {
+  font-size: 13px;
+  font-weight: 500;
+  color: #555;
+  white-space: nowrap;
+}
+
+.view-length-select {
+  padding: 4px 6px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+/* ─── Timeline header ──────────────────────────────────────────── */
+.timeline-header {
+  display: flex;
+  height: 44px;
+}
+
+.timeline-day {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  padding-bottom: 3px;
+  border-right: 1px solid #f0f0f0;
+  font-size: 11px;
+  color: #666;
+}
+
+.timeline-day--active {
+  background: rgba(52, 152, 219, 0.08);
+}
+
+.timeline-date {
+  font-weight: 600;
+  font-size: 11px;
+  color: #444;
+  margin-bottom: 2px;
+}
+
+.timeline-ticks {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  font-size: 10px;
+  color: #aaa;
+}
+
+/* ─── Section rows ─────────────────────────────────────────────── */
+.section-row {
+  display: flex;
+  border-bottom: 1px solid #e4e4e4;
+}
+
+.section-left {
+  width: 260px;
+  flex-shrink: 0;
+  padding: 14px 16px;
+  border-right: 1px solid #e4e4e4;
+}
+
+.section-right {
+  flex: 1;
+  overflow: hidden;
+  min-width: 0;
+}
+
+/* ─── Panel (left-side text content) ──────────────────────────── */
+.panel-title {
+  font-size: 15px;
+  font-weight: 600;
+  margin: 0 0 4px;
+  color: #2c3e50;
+}
+
+.panel-meta {
+  font-size: 11px;
+  color: #888;
+  line-height: 1.5;
+  margin: 0 0 10px;
+}
+
+.panel-select {
+  width: 100%;
+  padding: 5px 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 12px;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.panel-toggles {
+  margin-top: 6px;
+}
+
+/* ─── Legend items ─────────────────────────────────────────────── */
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: #555;
+  margin-bottom: 5px;
+}
+
+/* ─── Checkbox labels (Liftings section) ───────────────────────── */
+.check-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: #555;
+  margin-bottom: 7px;
+  cursor: pointer;
+}
+
+.check-label input[type='checkbox'] {
+  accent-color: #2980b9;
+  width: 14px;
+  height: 14px;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.prior-swatch {
+  display: inline-block;
+  width: 28px;
+  height: 8px;
+  background: #bdc3c7;
+  border-radius: 2px;
+}
+
+/* ─── Toggle checkboxes (Inventory section) ────────────────────── */
+.toggle-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color: #777;
+  margin-bottom: 4px;
+  cursor: pointer;
+}
+
+/* ─── Chart area ───────────────────────────────────────────────── */
+.chart-area {
+  width: 100%;
+  padding: 6px 0;
+}
+
+.chart-area--with-yaxis {
+  position: relative;
+}
+
+.chart-svg {
+  display: block;
+  width: 100%;
+}
+
+/* ─── Y-axis overlay ───────────────────────────────────────────── */
+.y-axis-overlay {
+  position: absolute;
+  left: 4px;
+  top: 6px;          /* matches chart-area padding-top */
+  width: 56px;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.y-label {
+  position: absolute;
+  right: 0;
+  transform: translateY(50%);
+  font-size: 11px;
+  color: #888;
+  white-space: nowrap;
+  line-height: 1;
+  background: rgba(255, 255, 255, 0.75);
+  padding: 0 2px;
+}
+
+.y-label--max {
+  color: #e74c3c;
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.y-label--min {
+  color: #95a5a6;
+  font-size: 10px;
+  font-weight: 600;
+}
+
+/* ─── Gantt legend row ─────────────────────────────────────────── */
+.gantt-legend-row {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 8px 6px;
+  font-size: 11px;
+  color: #888;
+}
+
+.gantt-legend-label {
+  margin-right: 8px;
+}
+
+/* ─── Historical Average section ───────────────────────────────── */
+.historical-row {
+  border-bottom: none;
+}
+
+.historical-row .panel {
+  padding: 0;
+}
+
+.hist-stats {
+  display: flex;
+  gap: 0;
+  margin-top: 8px;
+}
+
+.hist-stat {
+  text-align: center;
+  padding: 4px 20px 4px 0;
+  margin-right: 20px;
+  border-right: 1px solid #e4e4e4;
+}
+
+.hist-stat:last-child {
+  border-right: none;
+  margin-right: 0;
+}
+
+.hist-period {
+  font-size: 12px;
+  color: #888;
+  margin-bottom: 3px;
+}
+
+.hist-value {
+  font-size: 24px;
+  font-weight: 700;
+  color: #2c3e50;
+  line-height: 1;
+}
+
+.hist-delta {
+  font-size: 11px;
+  margin-top: 2px;
+}
+
+.hist-delta--down {
+  color: #888;
+}
+
+.hist-delta--up {
+  color: #27ae60;
+}
+
+.info-icon {
+  font-size: 13px;
+  color: #aaa;
+  cursor: help;
+  vertical-align: middle;
+}
